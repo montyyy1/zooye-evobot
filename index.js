@@ -90,3 +90,69 @@ client.on("message", async (message) => {
     message.reply("There was an error executing that command.").catch(console.error);
   }
 });
+
+client.on("message", m => {
+  if (m.content === PREFIX + "invite") {
+    var addserver =
+      "https://discord.com/api/oauth2/authorize?client_id=762156775716945983&permissions=1878523713&scope=bot";
+
+    let embed = new MessageEmbed()
+      .setAuthor("Click Here Invite", client.user.displayAvatarURL())
+      .setFooter(m.author.tag, m.author.avatarURL())
+      .setThumbnail(client.user.displayAvatarURL())
+
+      .setColor("#FF0074").setDescription(`
+** -[Add To Your Server](${addserver})**    
+
+`);
+    m.react(":746270103498391562:762643465506390037");
+    m.channel.send(embed);
+  }
+});
+
+client.on("message", m => {
+  if (m.content === PREFIX + "support") {
+    var addserver = "https://discord.gg/KbArr23";
+
+    let embed = new MessageEmbed()
+      .setAuthor("Server  Support", client.user.displayAvatarURL())
+      .setFooter(m.author.tag, m.author.avatarURL())
+
+      .setColor("#FF0074").setDescription(`
+** | [Server  Support](${addserver})**    
+
+`);
+    m.react(":746270103498391562:762643465506390037");
+    m.channel.send(embed);
+  }
+});
+
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "botinfo")) {
+    message.channel.send({
+      embed: new MessageEmbed()
+        .setAuthor(client.user.username, client.user.avatarURL)
+        .setThumbnail(client.user.displayAvatarURL())
+
+        .setColor("#E91E63")
+        .setTitle("BOT INFO")
+
+        .addField(
+          "``My Ping``",
+          [`${Date.now() - message.createdTimestamp}` + "MS"],
+          true
+        )
+
+        .setAuthor(" ", client.user.displayAvatarURL())
+        .addField("``servers``", [client.guilds.cache.size], true)
+        .addField("``channels``", `[ ${client.channels.cache.size} ]`, true)
+        .addField("``Users``", `[ ${client.users.cache.size} ]`, true)
+        .addField("``My Name``", `[ ${client.user.tag} ]`, true)
+        .addField("``My ID``", `[ ${client.user.id} ]`, true)
+        .addField("``My Prefix``", `[ ${PREFIX} ]`, true)
+        .addField("``My Language``", `[ JavaScript ]`, true)
+        .addField("``Bot Version``", `[ v1.0 ]`, true)
+    });
+  }
+});
+
