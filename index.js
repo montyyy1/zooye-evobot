@@ -101,7 +101,7 @@ client.on("message", async message => {
 
 const { MessageEmbed } = require("discord.js");
 client.on("message", m => {
-  if (m.content === PREFIX + "help") {
+  if (m.content === PREFIX + "") {
     var addserver =
       "https://discord.com/api/oauth2/authorize?client_id=762156775716945983&permissions=1878523713&scope=bot";
     var SUPPORT = "https://discord.gg/KbArr23";
